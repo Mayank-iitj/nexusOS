@@ -241,17 +241,18 @@ function FloatingParticles() {
   const [particles, setParticles] = useState<any[]>([]);
 
   useEffect(() => {
-    setParticles(
-      Array.from({ length: 30 }).map(() => ({
-        width: Math.random() * 4 + 1,
-        height: Math.random() * 4 + 1,
-        background: `rgba(99, 102, 241, ${Math.random() * 0.3 + 0.1})`,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        duration: Math.random() * 4 + 3,
-        delay: Math.random() * 2,
-      }))
-    );
+    // Generate particles once on mount
+    const newParticles = Array.from({ length: 30 }).map(() => ({
+      width: Math.random() * 4 + 1,
+      height: Math.random() * 4 + 1,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      background: `rgba(99, 102, 241, ${Math.random() * 0.5 + 0.1})`,
+      duration: Math.random() * 4 + 3,
+      delay: Math.random() * 3,
+    }));
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setParticles(newParticles);
     setMounted(true);
   }, []);
 
@@ -295,9 +296,9 @@ export default function LandingPage() {
   const typedGoal = useTypewriter(TYPEWRITER_GOALS);
 
   return (
-    <div className="min-h-screen gradient-bg-animated">
+    <main className="min-h-screen gradient-bg-animated">
       {/* ── Navbar ─────────────────────────────── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 glass-strong">
+      <nav aria-label="Main Navigation" className="fixed top-0 left-0 right-0 z-50 glass-strong">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
@@ -314,7 +315,8 @@ export default function LandingPage() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-sm text-zinc-400 hover:text-white transition-colors"
+                  className="text-sm font-medium text-zinc-300 hover:text-white transition-colors"
+                  aria-label={`Navigate to ${item.label}`}
                 >
                   {item.label}
                 </a>
@@ -883,6 +885,6 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
-    </div>
+    </main>
   );
 }
