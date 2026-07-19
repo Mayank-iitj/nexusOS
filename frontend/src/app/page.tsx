@@ -11,6 +11,7 @@ import {
   Mail,
   Calendar,
   GitBranch,
+  FileText,
   Video,
   Presentation,
   ArrowRight,
