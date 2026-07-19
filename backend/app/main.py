@@ -35,6 +35,12 @@ async def lifespan(app: FastAPI):
     """Application lifespan — startup and shutdown events."""
     # Startup
     print(f"NexusOS v{settings.app_version} starting...")
+    
+    # Initialize database tables
+    async with engine.begin() as conn:
+        from app.models.base import Base
+        await conn.run_sync(Base.metadata.create_all)
+        
     print(f"API docs: {settings.backend_url}/docs")
     yield
     # Shutdown

@@ -2,6 +2,7 @@ services:
   - type: web
     name: nexusos-backend
     env: python
+    rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: bash start.sh
     envVars:
