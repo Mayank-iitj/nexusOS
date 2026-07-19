@@ -1,0 +1,33 @@
+# Environments
+.env
+.env.*
+!.env.example
+venv/
+env/
+ENV/
+.venv/
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+.next/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
